@@ -1,0 +1,42 @@
+# 데일리 브리프 작성 규격 / Daily brief spec
+
+이 문서는 자동으로 브리프를 쓰는 작업(예약 작업)이 따르는 규칙입니다. 직접 글을 쓸 때는 `/admin`에서 작성하면 됩니다.
+
+## 파일
+- 위치: `src/briefs/YYYY-MM-DD-짧은-영문-슬러그.md` (하루 한 건이 기본, 같은 날 추가는 슬러그만 다르게)
+- 저장 후 `main` 브랜치에 커밋·푸시하면 Cloudflare Pages가 자동으로 사이트를 다시 만듭니다.
+
+## 머리말(front matter)
+```yaml
+---
+title: 한국어 제목 (한 줄, 70자 이내)
+title_en: English title
+date: YYYY-MM-DD
+tags: [trade, battery]        # 주제 키는 src/_data/topics.js 참고, 1~3개
+impact: high | medium | low   # 기업 영향도
+author: ai
+summary: 한국어 한두 문장 요약
+summary_en: One or two sentence English summary
+sources:
+  - name: 매체 또는 기관명
+    url: https://...
+body_en: |
+  (영문 본문, 아래 한국어 본문과 같은 구조)
+---
+```
+- 초안으로만 두려면 `draft: true`를 추가합니다(사이트에 나타나지 않음).
+- 예시 표시(`sample: true`)는 넣지 않습니다.
+
+## 본문 구조 (한국어와 영어 동일)
+1. `## 무슨 일이 있었나` / `## What happened`: 사실 위주, 날짜·기관·수치를 정확히
+2. `## 왜 중요한가` / `## Why it matters`
+3. `## 기업 시사점` / `## Implications for companies`: `### 공급망`, `### 규제`, `### 시장` 각각 1~3문장의 구체적 점검 사항
+4. `## 다음에 볼 것` / `## What to watch next`: 날짜가 있는 일정 위주의 목록
+
+## 원칙
+- 반드시 웹 검색으로 당일 자료를 확인하고, 확인한 출처만 `sources`에 넣습니다(최소 2개, 가능하면 1차 출처).
+- 확인하지 못한 사실이나 수치는 쓰지 않습니다. 불확실하면 "확인되지 않음"이라고 씁니다.
+- 기사 문장을 그대로 옮기지 않고 자신의 말로 요약합니다. 직접 인용은 짧게, 출처당 한 번까지.
+- 중립적인 보도체로 쓰고 전망은 근거와 함께 가능성으로만 표현합니다.
+- 같은 주제가 연속되지 않게 최근 브리프 제목을 보고 주제를 고릅니다.
+- 하루에 한 건, 한국어 본문은 800~1,500자 안팎.

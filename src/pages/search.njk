@@ -1,0 +1,13 @@
+---
+layout: layouts/base.njk
+permalink: /search/index.html
+title: 검색
+---
+{% from "macros.njk" import bi %}
+<main class="wrap page">
+  <h1 class="ptitle bi">{{ bi("검색", "Search") }}</h1>
+  <label class="sr" for="q">{{ bi("검색어", "Search terms") }}</label>
+  <input id="q" class="q" type="search" placeholder="제목, 요약, 주제 / title, summary, topic" autocomplete="off">
+  <p id="count" class="note"></p>
+  <div id="results" class="list"></div>
+</main>

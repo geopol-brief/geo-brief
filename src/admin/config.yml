@@ -1,0 +1,94 @@
+backend:
+  name: github
+  repo: geopol-brief/geo-brief
+  branch: main
+
+locale: ko
+media_folder: src/assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: writings
+    label: 글 (직접 작성)
+    folder: src/writings
+    extension: md
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: 제목, name: title, widget: string }
+      - { label: 영문 제목 (선택), name: title_en, widget: string, required: false }
+      - { label: 날짜, name: date, widget: datetime }
+      - { label: 한 줄 요약, name: summary, widget: text, required: false }
+      - { label: 영문 요약 (선택), name: summary_en, widget: text, required: false }
+      - label: 주제
+        name: tags
+        widget: select
+        multiple: true
+        required: false
+        options:
+          - { label: 통상, value: trade }
+          - { label: 미중 관계, value: us-china }
+          - { label: 에너지·광물, value: energy }
+          - { label: 배터리·모빌리티, value: battery }
+          - { label: 유럽, value: europe }
+          - { label: 중동, value: middle-east }
+          - { label: 아시아, value: asia }
+          - { label: 선거·정치, value: election }
+          - { label: 기술·안보, value: tech }
+          - { label: 한반도·한국, value: korea }
+      - { label: 작성 주체, name: author, widget: hidden, default: me }
+      - { label: 비공개 초안, name: draft, widget: boolean, default: false, required: false }
+      - { label: 본문 (한국어), name: body, widget: markdown }
+      - { label: 영문 본문 (선택), name: body_en, widget: markdown, required: false }
+
+  - name: briefs
+    label: 데일리 브리프
+    folder: src/briefs
+    extension: md
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: 제목, name: title, widget: string }
+      - { label: 영문 제목, name: title_en, widget: string, required: false }
+      - { label: 날짜, name: date, widget: datetime }
+      - { label: 한 줄 요약, name: summary, widget: text }
+      - { label: 영문 요약, name: summary_en, widget: text, required: false }
+      - label: 주제
+        name: tags
+        widget: select
+        multiple: true
+        options:
+          - { label: 통상, value: trade }
+          - { label: 미중 관계, value: us-china }
+          - { label: 에너지·광물, value: energy }
+          - { label: 배터리·모빌리티, value: battery }
+          - { label: 유럽, value: europe }
+          - { label: 중동, value: middle-east }
+          - { label: 아시아, value: asia }
+          - { label: 선거·정치, value: election }
+          - { label: 기술·안보, value: tech }
+          - { label: 한반도·한국, value: korea }
+      - label: 영향도
+        name: impact
+        widget: select
+        options:
+          - { label: 높음, value: high }
+          - { label: 중간, value: medium }
+          - { label: 낮음, value: low }
+      - label: 작성 주체
+        name: author
+        widget: select
+        default: ai
+        options:
+          - { label: AI 작성, value: ai }
+          - { label: 직접 작성, value: me }
+      - { label: 비공개 초안, name: draft, widget: boolean, default: false, required: false }
+      - label: 출처
+        name: sources
+        widget: list
+        required: false
+        fields:
+          - { label: 매체/기관명, name: name, widget: string }
+          - { label: 주소(URL), name: url, widget: string }
+      - { label: 본문 (한국어), name: body, widget: markdown }
+      - { label: 영문 본문, name: body_en, widget: markdown, required: false }

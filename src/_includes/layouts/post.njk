@@ -1,0 +1,34 @@
+---
+layout: layouts/base.njk
+---
+{% from "macros.njk" import bi, impactPill, badges, topicChips %}
+<main class="wrap post-wrap">
+  <article class="post">
+    <p class="crumb"><a href="/{{ kind }}/">{% if kind == "briefs" %}{{ bi("데일리 브리프", "Daily brief") }}{% else %}{{ bi("글", "Writings") }}{% endif %}</a></p>
+    <div class="meta">
+      <time datetime="{{ page.date | iso }}">{{ page.date | ymd }}</time>
+      {{ impactPill(impact) }}{{ badges({ sample: sample, author: author }) }}
+      <span class="chips">{{ topicChips(tags) }}</span>
+    </div>
+    <h1 class="bi">{{ bi(title, title_en) }}</h1>
+    {% if summary %}<p class="lede bi">{{ bi(summary, summary_en) }}</p>{% endif %}
+
+    {% if sample %}
+    <p class="note-box bi"><span class="ko">예시 글입니다. 사이트 모양을 보여주기 위한 것이니 실제 글로 교체하세요.</span><span class="en">This is a sample entry to show the layout. Replace it with real content.</span></p>
+    {% endif %}
+
+    <div class="prose{% if not body_en %} no-en{% endif %}">
+      <div class="ko-body">{{ content | safe }}</div>
+      {% if body_en %}<div class="en-body"><p class="langlabel">English</p>{{ body_en | md | safe }}</div>{% endif %}
+    </div>
+
+    {% if sources and sources.length %}
+    <section class="sources">
+      <h2>{{ bi("출처", "Sources") }}</h2>
+      <ul>
+        {% for s in sources %}<li><a href="{{ s.url }}" rel="noopener" target="_blank">{{ s.name or s.url }}</a></li>{% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+  </article>
+</main>

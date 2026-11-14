@@ -1,0 +1,21 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: topics
+  size: 1
+  alias: topic
+permalink: "/tags/{{ topic.key }}/"
+eleventyComputed:
+  title: "{{ topic.ko }}"
+---
+{% from "macros.njk" import bi, row %}
+<main class="wrap page">
+  <p class="crumb"><a href="/briefs/">{{ bi("주제별 보기", "Browse by topic") }}</a></p>
+  <h1 class="ptitle bi">{{ bi(topic.ko, topic.en) }}</h1>
+  <div class="list">
+    {% set items = collections.posts | withTag(topic.key) %}
+    {% for p in items %}{{ row(p) }}{% else %}
+      <p class="empty bi"><span class="ko">이 주제의 글이 아직 없습니다.</span><span class="en">Nothing on this topic yet.</span></p>
+    {% endfor %}
+  </div>
+</main>

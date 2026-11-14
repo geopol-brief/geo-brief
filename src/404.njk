@@ -1,0 +1,10 @@
+---
+layout: layouts/base.njk
+permalink: /404.html
+title: 페이지를 찾을 수 없습니다
+---
+{% from "macros.njk" import bi %}
+<main class="wrap page">
+  <h1 class="ptitle bi">{{ bi("페이지를 찾을 수 없습니다", "Page not found") }}</h1>
+  <p><a class="more" href="/">{{ bi("홈으로", "Back to home") }} &rarr;</a></p>
+</main>

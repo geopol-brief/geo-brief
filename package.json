@@ -1,0 +1,17 @@
+{
+  "name": "geo-brief",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "3.0.0",
+    "markdown-it": "14.1.0"
+  }
+}

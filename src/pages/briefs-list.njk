@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+permalink: /briefs/index.html
+title: 데일리 브리프
+---
+{% from "macros.njk" import bi, row %}
+<main class="wrap page">
+  <h1 class="ptitle bi">{{ bi("데일리 브리프", "Daily briefs") }}</h1>
+  <div class="chips big">
+    {% for t in topics %}<a class="tag inl" href="/tags/{{ t.key }}/"><span class="ko">{{ t.ko }}</span><span class="en">{{ t.en }}</span></a>{% endfor %}
+  </div>
+  <div class="list">
+    {% set cur = "" %}
+    {% for p in collections.briefs %}
+      {% set m = p.date | ym %}
+      {% if m != cur %}{% set cur = m %}<h2 class="month">{{ m }}</h2>{% endif %}
+      {{ row(p) }}
+    {% else %}
+      <p class="empty bi"><span class="ko">아직 게시된 브리프가 없습니다.</span><span class="en">No briefs yet.</span></p>
+    {% endfor %}
+  </div>
+</main>

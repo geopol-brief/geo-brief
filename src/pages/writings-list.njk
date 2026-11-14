@@ -1,0 +1,14 @@
+---
+layout: layouts/base.njk
+permalink: /writings/index.html
+title: 글
+---
+{% from "macros.njk" import bi, row %}
+<main class="wrap page">
+  <h1 class="ptitle bi">{{ bi("글", "Writings") }}</h1>
+  <div class="list">
+    {% for p in collections.writings %}{{ row(p) }}{% else %}
+      <p class="empty bi"><span class="ko">아직 글이 없습니다.</span><span class="en">No writings yet.</span></p>
+    {% endfor %}
+  </div>
+</main>

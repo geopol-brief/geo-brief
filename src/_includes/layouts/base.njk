@@ -1,0 +1,51 @@
+{% from "macros.njk" import bi %}<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if title %}{{ title }} · {% endif %}{{ site.title }}</title>
+<meta name="description" content="{{ summary or site.description }}">
+<meta property="og:title" content="{{ title or site.title }}">
+<meta property="og:description" content="{{ summary or site.description }}">
+<meta property="og:type" content="{% if kind %}article{% else %}website{% endif %}">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script>
+  try { var l = localStorage.getItem("geo-lang"); document.documentElement.setAttribute("data-lang", l === "ko" || l === "en" || l === "both" ? l : "both"); } catch (e) { document.documentElement.setAttribute("data-lang", "both"); }
+</script>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="mark" href="/">Geopolitical Brief <small class="ko">지정학 브리프</small></a>
+    <nav class="nav" aria-label="주 메뉴">
+      <a href="/briefs/">{{ bi("브리프", "Briefs") }}</a>
+      <a href="/writings/">{{ bi("글", "Writings") }}</a>
+      <a href="/search/">{{ bi("검색", "Search") }}</a>
+      <a href="/about/">{{ bi("소개", "About") }}</a>
+    </nav>
+    <div class="seg" role="group" aria-label="언어 / Language">
+      <button type="button" data-set="ko" id="lang-ko">한국어</button>
+      <button type="button" data-set="both" id="lang-both">한/영</button>
+      <button type="button" data-set="en" id="lang-en">EN</button>
+    </div>
+  </div>
+</header>
+
+{{ content | safe }}
+
+<footer>
+  <div class="wrap foot">
+    <div class="bi">
+      <span class="ko">AI가 작성한 브리프에는 "AI 작성" 표시와 출처를 붙입니다. 학습과 연구를 위한 정리이며 투자·법률 자문이 아닙니다.</span>
+      <span class="en">Briefs drafted by AI are labelled and sourced. Study notes only, not investment or legal advice.</span>
+    </div>
+    <div><a href="/feed.xml">RSS</a></div>
+  </div>
+</footer>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

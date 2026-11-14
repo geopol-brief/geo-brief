@@ -1,0 +1,19 @@
+---
+layout: layouts/base.njk
+permalink: /about/index.html
+title: 이 사이트에 대하여
+---
+{% from "macros.njk" import bi %}
+<main class="wrap page">
+  <h1 class="ptitle bi">{{ bi("이 사이트에 대하여", "About this site") }}</h1>
+  <div class="prose">
+    <h2>{{ bi("무엇을 다루나", "What it covers") }}</h2>
+    <p class="bi"><span class="ko">미중 통상, 에너지와 핵심광물, 배터리와 모빌리티, 유럽 규제, 주요국 선거와 같이 기업의 의사결정에 영향을 주는 국제 정세를 매일 정리합니다.</span><span class="en">Each day, a short read on international developments that affect corporate decisions: US-China trade, energy and critical minerals, batteries and mobility, European regulation and major elections.</span></p>
+    <h2>{{ bi("브리프의 구성", "How a brief is built") }}</h2>
+    <p class="bi"><span class="ko">모든 브리프는 무슨 일이 있었는지, 왜 중요한지, 기업 시사점(공급망·규제·시장), 다음에 볼 것의 순서로 정리하고 출처를 붙입니다.</span><span class="en">Every brief follows the same order: what happened, why it matters, implications for companies (supply chain, regulation, market) and what to watch next, with sources attached.</span></p>
+    <h2>{{ bi("AI 작성 표시", "AI disclosure") }}</h2>
+    <p class="bi"><span class="ko">일부 브리프는 AI가 초안을 작성합니다. 해당 글에는 "AI 작성" 표시가 붙고, 직접 쓴 글에는 "직접 작성" 표시가 붙습니다. 사실관계는 출처에서 확인할 수 있으며, 오류를 발견하면 정정합니다.</span><span class="en">Some briefs are drafted by AI. Those carry an "AI-drafted" label, and the author's own pieces carry "By the author". Facts can be checked against the listed sources, and errors are corrected when found.</span></p>
+    <h2>{{ bi("면책", "Disclaimer") }}</h2>
+    <p class="bi"><span class="ko">이 사이트의 글은 학습과 연구를 위한 정리이며 투자 권유나 법률 자문이 아닙니다.</span><span class="en">Content here is study material, not investment advice or legal counsel.</span></p>
+  </div>
+</main>

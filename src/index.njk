@@ -1,0 +1,81 @@
+---
+layout: layouts/base.njk
+permalink: /index.html
+---
+{% from "macros.njk" import bi, impactPill, badges, topicChips, row %}
+{% set latest = collections.briefs[0] %}
+<section class="mast">
+  <div class="wrap">
+    <div class="dateline"><span>Daily Brief</span>{% if latest %}<span>{{ latest.date | ymd }}</span>{% endif %}<span>KST</span></div>
+    <h1 class="hero bi">
+      <span class="ko">국제 정세를 매일 읽고,<br>기업의 판단으로 옮깁니다.</span>
+      <span class="en">Reading world affairs daily, turning them into corporate decisions.</span>
+    </h1>
+    <p class="intro bi">
+      <span class="ko">미중 통상, 에너지와 핵심광물, 유럽 규제, 주요국 선거까지. 하루 한 건의 정세를 요약하고, 기업이 지금 무엇을 점검해야 하는지 정리합니다.</span>
+      <span class="en">US-China trade, energy and critical minerals, European regulation, major elections. One development a day, summarized, with what companies should check now.</span>
+    </p>
+    <div class="stats">
+      <div class="stat"><b>{{ collections.briefs | length }}</b><span class="inl">{{ bi("누적 브리프", "Briefs") }}</span></div>
+      <div class="stat"><b>{{ collections.writings | length }}</b><span class="inl">{{ bi("글", "Writings") }}</span></div>
+      <div class="stat"><b>{{ topics | length }}</b><span class="inl">{{ bi("주제", "Topics") }}</span></div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap home-grid">
+  <div>
+    {% if latest %}
+    <h2 class="sec"><span class="inl">{{ bi("오늘의 브리프", "Latest brief") }}</span></h2>
+    <article class="lead">
+      <div class="meta">
+        <time datetime="{{ latest.date | iso }}">{{ latest.date | ymd }}</time>
+        {{ impactPill(latest.data.impact) }}{{ badges(latest.data) }}
+        <span class="chips">{{ topicChips(latest.data.tags) }}</span>
+      </div>
+      <h3 class="bi"><a href="{{ latest.url }}">{{ bi(latest.data.title, latest.data.title_en) }}</a></h3>
+      {% if latest.data.summary %}<p class="bi">{{ bi(latest.data.summary, latest.data.summary_en) }}</p>{% endif %}
+      <p><a class="more" href="{{ latest.url }}">{{ bi("전문 읽기", "Read the brief") }} &rarr;</a></p>
+    </article>
+
+    <h2 class="sec"><span class="inl">{{ bi("지난 브리프", "Recent briefs") }}</span></h2>
+    <div class="list">
+      {% for p in collections.briefs | head(8) %}{% if not loop.first %}{{ row(p) }}{% endif %}{% endfor %}
+    </div>
+    <p><a class="more" href="/briefs/">{{ bi("브리프 전체 보기", "All briefs") }} &rarr;</a></p>
+    {% else %}
+    <p class="empty bi"><span class="ko">아직 게시된 브리프가 없습니다.</span><span class="en">No briefs published yet.</span></p>
+    {% endif %}
+  </div>
+
+  <aside class="rail">
+    <section>
+      <h2 class="sec"><span class="inl">{{ bi("주제", "Topics") }}</span></h2>
+      <div class="chips big">
+        {% for t in topics %}<a class="tag inl" href="/tags/{{ t.key }}/"><span class="ko">{{ t.ko }}</span><span class="en">{{ t.en }}</span></a>{% endfor %}
+      </div>
+    </section>
+    <section>
+      <h2 class="sec"><span class="inl">{{ bi("글", "Writings") }}</span></h2>
+      {% if collections.writings.length %}
+      <ul class="plain">
+        {% for p in collections.writings | head(5) %}
+        <li><time>{{ p.date | ymd }}</time> <a class="bi" href="{{ p.url }}">{{ bi(p.data.title, p.data.title_en) }}</a></li>
+        {% endfor %}
+      </ul>
+      <p><a class="more" href="/writings/">{{ bi("글 전체 보기", "All writings") }} &rarr;</a></p>
+      {% else %}
+      <p class="note bi"><span class="ko">아직 글이 없습니다.</span><span class="en">No writings yet.</span></p>
+      {% endif %}
+    </section>
+    <section>
+      <h2 class="sec"><span class="inl">{{ bi("브리프의 형식", "How each brief is built") }}</span></h2>
+      <ol class="fmt">
+        <li class="bi">{{ bi("무슨 일이 있었나", "What happened") }}</li>
+        <li class="bi">{{ bi("왜 중요한가", "Why it matters") }}</li>
+        <li class="bi">{{ bi("기업 시사점 (공급망·규제·시장)", "Implications for companies (supply chain, regulation, market)") }}</li>
+        <li class="bi">{{ bi("다음에 볼 것", "What to watch next") }}</li>
+      </ol>
+    </section>
+  </aside>
+</main>

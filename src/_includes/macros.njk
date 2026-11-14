@@ -1,0 +1,31 @@
+{# Bilingual text. With no English text, the Korean shows in every language mode. #}
+{% macro bi(ko, en) -%}
+{%- if en and en != ko -%}<span class="ko">{{ ko }}</span><span class="en">{{ en }}</span>{%- else -%}<span class="x">{{ ko }}</span>{%- endif -%}
+{%- endmacro %}
+
+{% macro impactPill(level) -%}
+{%- if level == "high" -%}<span class="imp hi inl"><span class="ko">영향도 높음</span><span class="en">High impact</span></span>
+{%- elif level == "medium" -%}<span class="imp mid inl"><span class="ko">영향도 중간</span><span class="en">Medium impact</span></span>
+{%- elif level == "low" -%}<span class="imp lo inl"><span class="ko">영향도 낮음</span><span class="en">Low impact</span></span>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro badges(data) -%}
+{%- if data.sample %}<span class="badge sample inl"><span class="ko">예시</span><span class="en">Sample</span></span>{% endif -%}
+{%- if data.author == "ai" %}<span class="badge inl"><span class="ko">AI 작성</span><span class="en">AI-drafted</span></span>{% elif data.author == "me" %}<span class="badge own inl"><span class="ko">직접 작성</span><span class="en">By the author</span></span>{% endif -%}
+{%- endmacro %}
+
+{% macro topicChips(list) -%}
+{%- for k in list %}{% if k != "posts" %}<a class="tag inl" href="/tags/{{ k }}/"><span class="ko">{{ k | topicKo }}</span><span class="en">{{ k | topicEn }}</span></a>{% endif %}{% endfor -%}
+{%- endmacro %}
+
+{% macro row(p) -%}
+<article class="row">
+  <time class="d" datetime="{{ p.date | iso }}">{{ p.date | ymd }}</time>
+  <div class="t">
+    <a class="title bi" href="{{ p.url }}">{{ bi(p.data.title, p.data.title_en) }}</a>
+    <div class="chips">{{ topicChips(p.data.tags) }}</div>
+  </div>
+  <div class="r">{{ impactPill(p.data.impact) }}{{ badges(p.data) }}</div>
+</article>
+{%- endmacro %}
