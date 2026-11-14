@@ -6,7 +6,7 @@
 - 글쓰기 화면: `/admin` (Sveltia CMS, GitHub 토큰으로 로그인)
 - 데일리 브리프 작성 규격: [BRIEF_SPEC.md](BRIEF_SPEC.md)
 
-## Cloudflare Pages 설정
+## Cloudflare 배포 설정
 - Build command: `npm run build`
-- Build output directory: `_site`
-- Environment variable: `NODE_VERSION` = `22`
+- Deploy command: `npx wrangler deploy` (`wrangler.jsonc`가 `_site` 폴더를 배포)
+- 빌드 변수 `SITE_URL`에 실제 사이트 주소를 넣으면 RSS 링크가 올바르게 나옵니다.
