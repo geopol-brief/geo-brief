@@ -16,7 +16,7 @@
   var out = document.getElementById("results");
   var count = document.getElementById("count");
   var data = [];
-  var KIND = { briefs: "브리프 / Brief", writings: "글 / Writing" };
+  var KIND = { briefs: "브리프 / Brief", writings: "글 / Writing", books: "독서 / Book" };
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {

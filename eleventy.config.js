@@ -39,8 +39,15 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("writings", (api) =>
     api.getFilteredByGlob("src/writings/*.md").filter(published).sort(byDateDesc)
   );
+  eleventyConfig.addCollection("books", (api) =>
+    api.getFilteredByGlob("src/books/*.md").filter(published).sort(byDateDesc)
+  );
   eleventyConfig.addCollection("posts", (api) =>
-    [...api.getFilteredByGlob("src/briefs/*.md"), ...api.getFilteredByGlob("src/writings/*.md")]
+    [
+      ...api.getFilteredByGlob("src/briefs/*.md"),
+      ...api.getFilteredByGlob("src/writings/*.md"),
+      ...api.getFilteredByGlob("src/books/*.md"),
+    ]
       .filter(published)
       .sort(byDateDesc)
   );

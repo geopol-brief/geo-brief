@@ -24,6 +24,7 @@
   <time class="d" datetime="{{ p.date | iso }}">{{ p.date | ymd }}</time>
   <div class="t">
     <a class="title bi" href="{{ p.url }}">{{ bi(p.data.title, p.data.title_en) }}</a>
+    {% if p.data.book_title %}<div class="bk">『{{ p.data.book_title }}』{% if p.data.book_author %} · {{ p.data.book_author }}{% endif %}</div>{% endif %}
     <div class="chips">{{ topicChips(p.data.tags) }}</div>
   </div>
   <div class="r">{{ impactPill(p.data.impact) }}{{ badges(p.data) }}</div>

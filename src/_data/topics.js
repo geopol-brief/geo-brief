@@ -10,4 +10,8 @@ export default [
   { key: "election", ko: "선거·정치", en: "Elections" },
   { key: "tech", ko: "기술·안보", en: "Tech & security" },
   { key: "korea", ko: "한반도·한국", en: "Korea" },
+  { key: "economy", ko: "경제·산업", en: "Economy & industry" },
+  { key: "law", ko: "법·제도", en: "Law & institutions" },
+  { key: "history", ko: "역사·문명", en: "History" },
+  { key: "management", ko: "경영·전략", en: "Strategy & management" },
 ];

@@ -69,6 +69,19 @@ permalink: /index.html
       {% endif %}
     </section>
     <section>
+      <h2 class="sec"><span class="inl">{{ bi("독서", "Books") }}</span></h2>
+      {% if collections.books.length %}
+      <ul class="plain">
+        {% for p in collections.books | head(4) %}
+        <li><time>{{ p.date | ymd }}</time> <a class="bi" href="{{ p.url }}">{{ bi(p.data.title, p.data.title_en) }}</a>{% if p.data.book_title %}<div class="bk">『{{ p.data.book_title }}』{% if p.data.book_author %} · {{ p.data.book_author }}{% endif %}</div>{% endif %}</li>
+        {% endfor %}
+      </ul>
+      <p><a class="more" href="/books/">{{ bi("독후감 전체 보기", "All book reviews") }} &rarr;</a></p>
+      {% else %}
+      <p class="note bi"><span class="ko">아직 독후감이 없습니다.</span><span class="en">No book reviews yet.</span></p>
+      {% endif %}
+    </section>
+    <section>
       <h2 class="sec"><span class="inl">{{ bi("브리프의 형식", "How each brief is built") }}</span></h2>
       <ol class="fmt">
         <li class="bi">{{ bi("무슨 일이 있었나", "What happened") }}</li>

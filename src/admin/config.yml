@@ -36,6 +36,10 @@ collections:
           - { label: 선거·정치, value: election }
           - { label: 기술·안보, value: tech }
           - { label: 한반도·한국, value: korea }
+          - { label: 경제·산업, value: economy }
+          - { label: 법·제도, value: law }
+          - { label: 역사·문명, value: history }
+          - { label: 경영·전략, value: management }
       - { label: 작성 주체, name: author, widget: hidden, default: me }
       - { label: 비공개 초안, name: draft, widget: boolean, default: false, required: false }
       - { label: 본문 (한국어), name: body, widget: markdown }
@@ -68,6 +72,10 @@ collections:
           - { label: 선거·정치, value: election }
           - { label: 기술·안보, value: tech }
           - { label: 한반도·한국, value: korea }
+          - { label: 경제·산업, value: economy }
+          - { label: 법·제도, value: law }
+          - { label: 역사·문명, value: history }
+          - { label: 경영·전략, value: management }
       - label: 영향도
         name: impact
         widget: select
@@ -92,3 +100,49 @@ collections:
           - { label: 주소(URL), name: url, widget: string }
       - { label: 본문 (한국어), name: body, widget: markdown }
       - { label: 영문 본문, name: body_en, widget: markdown, required: false }
+
+  - name: books
+    label: 독서 (독후감)
+    folder: src/books
+    extension: md
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: 독후감 제목, name: title, widget: string }
+      - { label: 영문 제목 (선택), name: title_en, widget: string, required: false }
+      - { label: 책 제목, name: book_title, widget: string }
+      - { label: 저자, name: book_author, widget: string }
+      - { label: 출판사 (선택), name: publisher, widget: string, required: false }
+      - { label: 출판 연도 (선택), name: pub_year, widget: number, value_type: int, required: false }
+      - { label: 별점 1~5 (선택), name: rating, widget: number, value_type: int, min: 1, max: 5, required: false }
+      - { label: 읽은 날짜, name: date, widget: datetime }
+      - { label: 한 줄 요약, name: summary, widget: text, required: false }
+      - { label: 영문 요약 (선택), name: summary_en, widget: text, required: false }
+      - label: 주제
+        name: tags
+        widget: select
+        multiple: true
+        required: false
+        options:
+          - { label: 통상, value: trade }
+          - { label: 미중 관계, value: us-china }
+          - { label: 에너지·광물, value: energy }
+          - { label: 배터리·모빌리티, value: battery }
+          - { label: 유럽, value: europe }
+          - { label: 중동, value: middle-east }
+          - { label: 아시아, value: asia }
+          - { label: 선거·정치, value: election }
+          - { label: 기술·안보, value: tech }
+          - { label: 한반도·한국, value: korea }
+          - { label: 경제·산업, value: economy }
+          - { label: 법·제도, value: law }
+          - { label: 역사·문명, value: history }
+          - { label: 경영·전략, value: management }
+      - { label: 작성 주체, name: author, widget: hidden, default: me }
+      - { label: 비공개 초안, name: draft, widget: boolean, default: false, required: false }
+      - { label: 본문 (한국어), name: body, widget: markdown }
+      - { label: 영문 본문 (선택), name: body_en, widget: markdown, required: false }
+      - { label: 작성 주체, name: author, widget: hidden, default: me }
+      - { label: 비공개 초안, name: draft, widget: boolean, default: false, required: false }
+      - { label: 본문 (한국어), name: body, widget: markdown }
+      - { label: 영문 본문 (선택), name: body_en, widget: markdown, required: false }
